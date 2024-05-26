@@ -10,8 +10,8 @@ const isChecked = ref(props.checked)
 
 <template>
   <div class="">
-    <span class="input">
-      <input type="checkbox" v-model="isChecked" v-on:change="$emit('changed', isChecked)" />
+    <span>
+      <Checkbox v-model="isChecked" :binary="true" v-on:change="$emit('changed', isChecked)" />
     </span>
     <span class="name">
       {{ props.name }}
@@ -19,18 +19,14 @@ const isChecked = ref(props.checked)
     <span class="amount">
       {{ props.amount }}
     </span>
-    <span class="edit">
-      <button>
-        <i>
-          <ToolingIcon />
-        </i>
-      </button>
-    </span>
-    <span class="remove">
-      <button v-on:click="$emit('removeItem')">
-        X
-      </button>
-    </span>
+    <Button>
+      <i>
+        <ToolingIcon />
+      </i>
+    </Button>
+    <Button v-on:click="$emit('removeItem')">
+      X
+    </Button>
   </div>
 </template>
 
@@ -39,6 +35,7 @@ div {
   display: flex;
   flex-direction: row;
   gap: 1em;
+  flex: auto;
 }
 
 span {

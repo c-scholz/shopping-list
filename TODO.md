@@ -13,7 +13,7 @@
   - name, amount ✔
   - error handling ✔
   - date
-  - update to use vueprime components
+  - update to use vueprime components ✔
 
 - ShoppingItem component  
   - name, checked, amount ✔
@@ -35,7 +35,7 @@
 - implement data localstorage
 
 - implement material ui
-  - add vueprime (tailwind?)
-  - set material design theme
+  - add vueprime  ✔
+  - set material design theme  ✔
 
 - implement push handler in serviceworker

@@ -90,6 +90,10 @@ provides you with all information you need to get started.
 </template>
 
 <style scoped>
+ul {
+  padding-left: 0;
+}
+
 li {
   list-style: none;
 }
