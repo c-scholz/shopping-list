@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
-import ListView from './components/ListView.vue'
+import ShoppingListDetails from './views/ShoppingListDetails.vue'
 </script>
 
 <template>
@@ -13,7 +13,7 @@ import ListView from './components/ListView.vue'
   </header>
 
   <main>
-    <ListView />
+    <ShoppingListDetails />
   </main>
 </template>
 

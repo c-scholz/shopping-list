@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import ShoppingList from './ShoppingList.vue'
+import AddItemForm from '../components/AddItemForm.vue'
+import ShoppingItem from '../components/ShoppingItem.vue'
+
+import { items, removeItem, addItem } from '../interfaces/storageInterface';
 </script>
 
 <template>
-  <ShoppingList />
+  <AddItemForm v-on:add-item="(toAdd) => addItem(toAdd)" />
+  <ul>
+    <li v-for="(item, idx) in items" v-bind:key="idx">
+      <ShoppingItem v-bind="item" v-on:remove-item="() => removeItem(idx)" />
+    </li>
+  </ul>
   <!-- <WelcomeItem>
     <template #icon>
       <DocumentationIcon />
@@ -80,3 +88,9 @@ provides you with all information you need to get started.
 </WelcomeItem> -->
 
 </template>
+
+<style scoped>
+li {
+  list-style: none;
+}
+</style>
