@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
+import { v4 as uuid } from 'uuid'
+
 const emit = defineEmits(['addItem', 'error'])
 
 const nextItem = ref<string | undefined>()
@@ -7,6 +9,7 @@ const nextAmount = ref<string | undefined>()
 
 const addItem = () => {
   emit('addItem', {
+    id: uuid(),
     name: nextItem.value,
     checked: false,
     amount: nextAmount.value,

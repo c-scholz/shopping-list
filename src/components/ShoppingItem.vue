@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Item } from '../settings/types'
+import { type Item } from '@/settings/types'
 import { ref } from 'vue'
 import ToolingIcon from './icons/IconTooling.vue'
 

@@ -13,7 +13,7 @@ import ShoppingListDetails from './views/ShoppingListDetails.vue'
   </header>
 
   <main>
-    <ShoppingListDetails />
+    <RouterView />
   </main>
 </template>
 
