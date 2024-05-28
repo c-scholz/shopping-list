@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { List } from '@/settings/types'
 import { ref } from 'vue'
 import { v4 as uuid } from 'uuid'
-import type { List } from '@/settings/types'
 const emit = defineEmits(['addList'])
 
 const nextListName = ref<string | undefined>()

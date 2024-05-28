@@ -6,13 +6,15 @@ const props = defineProps<{
   list: List
 }>()
 
-const updateList = ref(props.list)
+const updatedList = ref(props.list)
 
+const editMode = ref(false)
 </script>
 
 <template>
   <div>
-    <InputText v-model="updateList.name"></InputText>
-    <Calendar v-model="updateList.dueDate"></Calendar>
+    <InputText v-if="editMode" v-model="updatedList.name"></InputText>
+    <Calendar v-if="editMode" v-model="updatedList.dueDate"></Calendar>
+    <Button type="button" v-on:click="editMode = !editMode">{{ editMode ? `Stop Edit` : `Edit` }}</Button>
   </div>
 </template>

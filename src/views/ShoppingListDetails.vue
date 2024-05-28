@@ -8,16 +8,16 @@ const { id } = defineProps<{
   id: string
 }>()
 
-const { lists, updateList, addItem, removeItem } = useLists()
+const { lists, addItem, removeItem } = useLists()
 
 const list = lists.find(list => list.id === id)
 
 </script>
 
 <template>
-  <div>{{ id }}</div>
+  <h2>Shopping List "{{ list?.name }}" <br />({{ id }})</h2>
   <div v-if="list !== undefined">
-    <EditShoppingListForm :list="list" v-on:update-list="(updatedList) => updateList(updatedList)" />
+    <EditShoppingListForm :list="list" />
     <AddItemForm v-on:add-item="(newItem) => addItem(newItem, list)" />
     <ul>
       <li v-for="(item, idx) in list.items" v-bind:key="idx">
@@ -25,7 +25,6 @@ const list = lists.find(list => list.id === id)
       </li>
     </ul>
   </div>
-
 </template>
 
 <style scoped>

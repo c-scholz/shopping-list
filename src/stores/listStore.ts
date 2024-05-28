@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
 import { type Item, type List } from '@/settings/types'
+import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
 export const useLists = defineStore('lists', () => {
@@ -24,11 +24,6 @@ export const useLists = defineStore('lists', () => {
     lists.value.splice(removeIdx, 1)
   }
 
-  const updateList = (updatedList: List) => {
-    const updateIdx = lists.value.findIndex(list => list.id === updatedList.id)
-    lists.value[updateIdx] = updatedList
-  }
-
   const addItem = (newItem: Item, updateList: List) => {
     console.log([...lists.value], updateList)
     const updateIdx = lists.value.findIndex(list => list.id === updateList.id)
@@ -43,8 +38,8 @@ export const useLists = defineStore('lists', () => {
   }
 
   const updateItem = (updatedItem: Item) => {
-
+    // TODO
   }
 
-  return { lists, sortedLists, addList, removeList, updateList, addItem, removeItem, updateItem }
+  return { lists, sortedLists, addList, removeList, addItem, removeItem, updateItem }
 })

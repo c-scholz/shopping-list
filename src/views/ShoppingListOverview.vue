@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { useLists } from '@/stores/listStore'
 import AddListForm from '@/components/AddListForm.vue'
-import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia'
 
 const store = useLists()
-
+const { addList } = store
 const { sortedLists } = storeToRefs(store)
 </script>
 
 <template>
   <div>
-    <AddListForm v-on:add-list="store.addList" />
+    <AddListForm v-on:add-list="(newList) => addList(newList)" />
   </div>
   <div class="cards">
     <Card v-for="list in sortedLists" v-bind:key="list.id">
