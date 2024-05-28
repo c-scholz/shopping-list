@@ -21,7 +21,7 @@ const list = lists.find(list => list.id === id)
     <AddItemForm v-on:add-item="(newItem) => addItem(newItem, list)" />
     <ul>
       <li v-for="(item, idx) in list.items" v-bind:key="idx">
-        <ShoppingItem v-bind="item" v-on:remove-item="(removeItem) => removeItem(removeItem, list)" />
+        <ShoppingItem v-bind="item" v-on:remove-item="(removedItem) => removeItem(removedItem, list)" />
       </li>
     </ul>
   </div>
