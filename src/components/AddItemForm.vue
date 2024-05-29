@@ -6,6 +6,7 @@ const emit = defineEmits(['addItem', 'error'])
 
 const nextItem = ref<string | undefined>()
 const nextAmount = ref<string | undefined>()
+const nextUnit = ref<string | undefined>()
 
 const addItem = () => {
   emit('addItem', {
@@ -13,6 +14,7 @@ const addItem = () => {
     name: nextItem.value,
     checked: false,
     amount: nextAmount.value,
+    unit: nextUnit.value,
   })
   nextItem.value = undefined
   nextAmount.value = undefined
@@ -23,13 +25,17 @@ const addItem = () => {
 <template>
   <form v-on:submit.prevent="addItem">
     <div class="form-row">
-      <FloatLabel>
+      <FloatLabel class="item">
         <InputText id="next-item" v-model="nextItem" required="true" />
         <label for="next-item">Item</label>
       </FloatLabel>
-      <FloatLabel>
-        <InputText id="next-amount" type="text" v-model="nextAmount" />
+      <FloatLabel class="amount">
+        <InputNumber id="next-amount" v-model="nextAmount" />
         <label for="next-amount">Amount</label>
+      </FloatLabel>
+      <FloatLabel class="unit">
+        <InputText id="next-unit" v-model="nextUnit" />
+        <label for="next-unit">Unit</label>
       </FloatLabel>
       <Button type="submit" icon="pi pi-plus" iconPos="left">Add item</Button>
     </div>
@@ -39,25 +45,34 @@ const addItem = () => {
 <style scoped lang="scss">
 .form-row {
   display: flex;
-  gap: 2em;
+  gap: 1em;
   flex-wrap: wrap;
 }
 
-.p-float-label {
-  flex: 1 1 auto;
+.item {
+  flex-grow: 1;
+  flex-basis: 20em;
+}
+
+.amount,
+.unit {
+  flex-grow: 1;
+  flex-basis: 1em;
 }
 
 .p-float-label>label {
-  top: 40%;
+  top: 1.3em;
 }
 
-.p-inputtext {
-  width: 100%;
+.p-inputtext,
+.p-inputnumber {
+  min-width: 100%;
 }
 
 .p-button {
-  flex: 1 1 6em;
-  justify-content: center;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 4.5em;
   white-space: nowrap;
 }
 </style>

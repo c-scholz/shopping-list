@@ -2,7 +2,8 @@ export type Item = {
   id: string
   checked: boolean
   name: string
-  amount?: string
+  amount?: number
+  unit?: string
 }
 
 export type List = {

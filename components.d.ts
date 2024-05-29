@@ -13,6 +13,7 @@ declare module 'vue' {
     Checkbox: typeof import('primevue/checkbox')['default']
     EditShoppingListForm: typeof import('./src/components/EditShoppingListForm.vue')['default']
     FloatLabel: typeof import('primevue/floatlabel')['default']
+    InputNumber: typeof import('primevue/inputnumber')['default']
     InputText: typeof import('primevue/inputtext')['default']
     MenuBar: typeof import('./src/components/MenuBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

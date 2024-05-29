@@ -8,7 +8,8 @@ describe('item store', () => {
     id: 'abc-123-def-456',
     checked: false,
     name: 'Lachscarpaccio',
-    amount: '300g'
+    amount: 300,
+    unit: 'g'
   }
   const mockItemB: Item = {
     id: 'ghi-321-jkl-654',

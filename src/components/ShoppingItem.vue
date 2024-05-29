@@ -32,6 +32,13 @@ const isEdited = ref(false)
       <InputText v-model="updatedItem.amount" required id="{{ id }}-amount" />
       <label for="{{ id }}-amount">Amount</label>
     </FloatLabel>
+    <span v-if="!isEdited" class="unit">
+      {{ item.unit }}
+    </span>
+    <FloatLabel v-if="isEdited" class="unit">
+      <InputText v-model="updatedItem.unit" required id="{{ id }}-unit" />
+      <label for="{{ id }}-unit">Unit</label>
+    </FloatLabel>
     <ToggleButton type="button" v-model="isEdited" onLabel="Done" offLabel="Edit" onIcon="pi pi-check"
       offIcon="pi pi-pencil" />
     <Button type="submit" icon="pi pi-times" v-on:click="$emit('removeItem')" />
@@ -41,7 +48,7 @@ const isEdited = ref(false)
 <style scoped>
 .item-row {
   display: flex;
-  gap: 0.25em;
+  gap: 1em;
   flex-wrap: wrap;
   align-items: center;
 }
@@ -55,8 +62,9 @@ const isEdited = ref(false)
   flex: 1 1 5em;
 }
 
-.amount {
-  flex: 1 1 3em;
+.amount,
+.unit {
+  flex: 0.125 1 2em;
 }
 
 .p-button,
