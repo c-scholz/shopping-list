@@ -34,7 +34,7 @@ const isEdited = ref(false)
     </FloatLabel>
     <ToggleButton type="button" v-model="isEdited" onLabel="Done" offLabel="Edit" onIcon="pi pi-check"
       offIcon="pi pi-pencil" />
-    <Button type="submit" icon="pi pi-times" v-on:click="$emit('removeItem', updatedItem)" />
+    <Button type="submit" icon="pi pi-times" v-on:click="$emit('removeItem')" />
   </div>
 </template>
 

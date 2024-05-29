@@ -1,26 +1,35 @@
 import { type Item, type List } from '@/settings/types'
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
-export const useLists = defineStore(
-  'lists',
-  () => {
-    const list = ref<List>({ name: 'Shopping List', dueDate: undefined })
+const getDefaultList = () => {
+  const parsedList = JSON.parse(localStorage.getItem('list') ?? '{"name": "Unnamed List"}')
+  parsedList.dueDate = new Date(parsedList.dueDate ?? new Date)
+  return parsedList
+}
 
-    const items = ref<Item[]>([])
+const list = ref<List>(getDefaultList())
 
-    const addItem = (newItem: Item) => {
-      items.value.push(newItem)
-    }
+const items = ref<Item[]>(JSON.parse(localStorage.getItem('items') ?? '[]'))
 
-    const removeItem = (removeItem: Item) => {
-      const updateItemIdx = items.value.findIndex(item => item.id === removeItem.id)
-      items.value.splice(updateItemIdx, 1)
-    }
-
-    return { items, list, addItem, removeItem }
-  },
-  {
-    persist: true
+export const useLists = () => {
+  const addItem = (newItem: Item) => {
+    items.value.push(newItem)
   }
-)
+
+  const removeItem = (removeItemIdx: number) => {
+    items.value.splice(removeItemIdx, 1)
+  }
+
+  return { items, list, addItem, removeItem }
+}
+
+
+watch(list, (newList) => {
+  console.log('updated list')
+  localStorage.setItem('list', JSON.stringify(newList))
+}, { deep: true })
+
+watch(items, (newItems) => {
+  console.log('updated items')
+  localStorage.setItem('items', JSON.stringify(newItems))
+}, { deep: true })

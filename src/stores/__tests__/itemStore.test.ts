@@ -1,12 +1,8 @@
 import type { Item } from "@/settings/types"
-import { beforeEach, describe, it, expect } from "vitest"
-import { setActivePinia, createPinia } from "pinia"
+import { describe, it, expect } from "vitest"
 import { useLists } from "@/stores/listStore"
 
 describe('item store', () => {
-  beforeEach(() => {
-    setActivePinia(createPinia())
-  })
 
   const mockItemA: Item = {
     id: 'abc-123-def-456',
@@ -20,15 +16,27 @@ describe('item store', () => {
     name: 'Safran',
   }
 
+  const { items, addItem, removeItem } = useLists()
+
   it('adds item', () => {
-    const { items, addItem } = useLists()
-    expect(items).toHaveLength(0)
+    expect(items.value).toHaveLength(0)
     addItem(mockItemA)
     addItem(mockItemB)
-    expect(items[0].name).toBe(mockItemA.name)
-    expect(items[1].amount).toBeUndefined()
+    expect(items.value[0].name).toBe(mockItemA.name)
+    expect(items.value[1].amount).toBeUndefined()
   })
 
-  it('removes item')
+  it('removes item', () => {
+    expect(items.value).toHaveLength(2)
+    removeItem(0)
+    // removed mockItemA so now mockItemB should be in index 0
+    expect(items.value[0].id).toEqual(mockItemB.id)
+  })
+
+  it('updates localstorage', () => {
+    const parsedData = JSON.parse(localStorage.getItem('items') || '[]')
+    // mockItemB should also be in index 0 in localStorage
+    expect(parsedData[0].id).toEqual(mockItemB.id)
+  })
 
 })

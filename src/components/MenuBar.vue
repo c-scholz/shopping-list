@@ -1,26 +1,20 @@
 <script setup lang="ts">
-import { useLists } from '@/stores/listStore';
+import type { List } from '@/settings/types';
 
 defineProps<{
-  msg: string
+  msg: string,
+  list: List
 }>()
-
-const { list } = useLists()
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ list.name || 'Unnamed Shopping List' }}</h1>
+    <h1 class="green">{{ list.name }}</h1>
     <h3 v-if="list.dueDate">
-      due: {{
-        typeof list.dueDate === "string" ?
-          new Date(list.dueDate).toLocaleDateString('en-EN', {
-            day: 'numeric', weekday: 'long', month: 'long', year: 'numeric'
-          }) :
-          list.dueDate?.toLocaleDateString('en-EN', {
-            day: 'numeric', weekday: 'long', month: 'long', year: 'numeric'
-          })
-      }}
+      due: {{ new Date(list.dueDate).toLocaleDateString('en-EN', {
+        day: 'numeric', weekday: 'long', month: 'long', year:
+          'numeric'
+      }) }}
     </h3>
   </div>
 </template>

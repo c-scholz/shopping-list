@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { type List } from '@/settings/types'
+import type { List } from '@/settings/types'
+import { ref } from 'vue'
 
 const props = defineProps<{
   list: List
@@ -18,8 +18,8 @@ const isEdited = ref(false)
       <label for="list-name">Name</label>
     </FloatLabel>
     <FloatLabel v-if="isEdited">
-      <Calendar v-model="updatedList.dueDate" date-format="dd.mm.y" showIcon />
-      <label for="list-name">Due date</label>
+      <Calendar v-model="updatedList.dueDate" id="list-duedate" date-format="dd.mm.y" showIcon />
+      <label for="list-duedate">Due date</label>
     </FloatLabel>
     <ToggleButton type="button" v-model="isEdited" onLabel="Done" offLabel="Edit List" onIcon="pi pi-check"
       offIcon="pi pi-pencil" />

@@ -12,8 +12,8 @@ const { items, list, addItem, removeItem } = useLists()
     <EditShoppingListForm :list="list" />
     <AddItemForm v-on:add-item="addItem" />
     <ul>
-      <li v-for="(item, idx) in items" v-bind:key="idx">
-        <ShoppingItem :item="item" v-on:remove-item="(removedItem) => removeItem(removedItem)" />
+      <li v-for="(item, idx) in items" v-bind:key="item.id">
+        <ShoppingItem :item="item" v-on:remove-item="removeItem(idx)" />
       </li>
     </ul>
   </div>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import MenuBar from '@/components/MenuBar.vue'
+import { useLists } from '@/stores/listStore'
+
+const { list } = useLists()
 </script>
 
 <template>
@@ -7,7 +10,7 @@ import MenuBar from '@/components/MenuBar.vue'
     <img alt="Shopping List logo" class="logo" src="@/assets/android-chrome-512x512.png" width="125" height="125" />
 
     <div class="wrapper">
-      <MenuBar msg="You did it!" />
+      <MenuBar msg="You did it!" :list="list" />
     </div>
   </header>
 
