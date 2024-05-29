@@ -1,5 +1,11 @@
 export type Item = {
-  checked: boolean;
-  name: string;
-  amount?: string;
+  id: string
+  checked: boolean
+  name: string
+  amount?: string
+}
+
+export type List = {
+  name: string
+  dueDate?: Date
 }

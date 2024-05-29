@@ -1,22 +1,15 @@
-import './assets/main.css'
+import './assets/main.scss'
 import { registerSW } from 'virtual:pwa-register'
 import { createApp } from 'vue'
-import PrimeVue from 'primevue/config'
-import Button from 'primevue/button'
-import Checkbox from 'primevue/checkbox'
-import FloatLabel from 'primevue/floatlabel'
-import InputText from 'primevue/inputtext'
-import 'primevue/resources/themes/md-light-indigo/theme.css'
-import 'primevue/resources/themes/md-dark-indigo/theme.css'
-
 import App from './App.vue'
+import { router } from './settings/routing'
+import { pinia } from './settings/store'
+import PrimeVue from 'primevue/config'
 
 registerSW({ immediate: true })
 
 createApp(App)
+  .use(router)
+  .use(pinia)
   .use(PrimeVue)
-  .component('Button', Button)
-  .component('Checkbox', Checkbox)
-  .component('FloatLabel', FloatLabel)
-  .component('InputText', InputText)
   .mount('#app')

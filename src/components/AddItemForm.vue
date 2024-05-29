@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
+import { v4 as uuid } from 'uuid'
+
 const emit = defineEmits(['addItem', 'error'])
 
 const nextItem = ref<string | undefined>()
@@ -7,6 +9,7 @@ const nextAmount = ref<string | undefined>()
 
 const addItem = () => {
   emit('addItem', {
+    id: uuid(),
     name: nextItem.value,
     checked: false,
     amount: nextAmount.value,
@@ -28,12 +31,12 @@ const addItem = () => {
         <InputText id="next-amount" type="text" v-model="nextAmount" />
         <label for="next-amount">Amount</label>
       </FloatLabel>
-      <Button type="submit">Add item</Button>
+      <Button type="submit" icon="pi pi-plus" iconPos="left">Add item</Button>
     </div>
   </form>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .form-row {
   display: flex;
   gap: 2em;
