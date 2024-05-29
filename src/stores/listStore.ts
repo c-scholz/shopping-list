@@ -1,45 +1,26 @@
 import { type Item, type List } from '@/settings/types'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
-export const useLists = defineStore('lists', () => {
-  const lists = ref<List[]>([])
+export const useLists = defineStore(
+  'lists',
+  () => {
+    const list = ref<List>({ name: 'Shopping List', dueDate: undefined })
 
-  const sortedLists = computed(() => [...lists.value].sort((listA, listB) => {
-    if (listA.dueDate === undefined) {
-      return 1
+    const items = ref<Item[]>([])
+
+    const addItem = (newItem: Item) => {
+      items.value.push(newItem)
     }
-    if (listB.dueDate === undefined) {
-      return -1
+
+    const removeItem = (removeItem: Item) => {
+      const updateItemIdx = items.value.findIndex(item => item.id === removeItem.id)
+      items.value.splice(updateItemIdx, 1)
     }
-    return listA.dueDate.getTime() - listB.dueDate.getTime()
-  }))
 
-  const addList = (newList: List) => {
-    lists.value.push(newList)
+    return { items, list, addItem, removeItem }
+  },
+  {
+    persist: true
   }
-
-  const removeList = (removeList: List) => {
-    const removeIdx = lists.value.findIndex(list => list.id === removeList.id)
-    lists.value.splice(removeIdx, 1)
-  }
-
-  const addItem = (newItem: Item, updateList: List) => {
-    console.log([...lists.value], updateList)
-    const updateIdx = lists.value.findIndex(list => list.id === updateList.id)
-    lists.value[updateIdx]?.items.push(newItem)
-  }
-
-  const removeItem = (removeItem: Item, updateList: List) => {
-    console.log(lists)
-    const updateListIdx = lists.value.findIndex(list => list.id === updateList.id)
-    const updateItemIdx = lists.value[updateListIdx]?.items.findIndex(item => item.id === removeItem.id)
-    lists.value[updateListIdx].items.splice(updateItemIdx, 1)
-  }
-
-  const updateItem = (updatedItem: Item) => {
-    // TODO
-  }
-
-  return { lists, sortedLists, addList, removeList, addItem, removeItem, updateItem }
-})
+)

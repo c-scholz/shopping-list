@@ -4,30 +4,32 @@ import AddItemForm from '@/components/AddItemForm.vue'
 import EditShoppingListForm from '@/components/EditShoppingListForm.vue'
 import ShoppingItem from '@/components/ShoppingItem.vue'
 
-const { id } = defineProps<{
-  id: string
-}>()
-
-const { lists, addItem, removeItem } = useLists()
-
-const list = lists.find(list => list.id === id)
-
+const { items, list, addItem, removeItem } = useLists()
 </script>
 
 <template>
-  <h2>Shopping List "{{ list?.name }}" <br />({{ id }})</h2>
-  <div v-if="list !== undefined">
+  <div class="list-container">
     <EditShoppingListForm :list="list" />
-    <AddItemForm v-on:add-item="(newItem) => addItem(newItem, list)" />
+    <AddItemForm v-on:add-item="addItem" />
     <ul>
-      <li v-for="(item, idx) in list.items" v-bind:key="idx">
-        <ShoppingItem v-bind="item" v-on:remove-item="(removedItem) => removeItem(removedItem, list)" />
+      <li v-for="(item, idx) in items" v-bind:key="idx">
+        <ShoppingItem :item="item" v-on:remove-item="(removedItem) => removeItem(removedItem)" />
       </li>
     </ul>
   </div>
 </template>
 
 <style scoped>
+.list-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.list-container>* {
+  margin-top: 2em;
+}
+
 ul {
   padding-left: 0;
 }

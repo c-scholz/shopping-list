@@ -6,8 +6,6 @@ export type Item = {
 }
 
 export type List = {
-  id: string
   name: string
-  items: Item[]
   dueDate?: Date
 }

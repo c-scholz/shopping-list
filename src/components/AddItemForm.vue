@@ -31,12 +31,12 @@ const addItem = () => {
         <InputText id="next-amount" type="text" v-model="nextAmount" />
         <label for="next-amount">Amount</label>
       </FloatLabel>
-      <Button type="submit">Add item</Button>
+      <Button type="submit" icon="pi pi-plus" iconPos="left">Add item</Button>
     </div>
   </form>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .form-row {
   display: flex;
   gap: 2em;

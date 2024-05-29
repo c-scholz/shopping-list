@@ -1,44 +1,80 @@
 <script setup lang="ts">
 import { type Item } from '@/settings/types'
 import { ref } from 'vue'
-import ToolingIcon from './icons/IconTooling.vue'
 
-const props = defineProps<Item>()
+defineEmits(['removeItem'])
 
-const isChecked = ref(props.checked)
+const props = defineProps<{
+  item: Item
+}>()
+
+const updatedItem = ref(props.item)
+
+const isEdited = ref(false)
 </script>
 
 <template>
-  <div class="">
-    <span>
-      <Checkbox v-model="isChecked" :binary="true" v-on:change="$emit('changed', isChecked)" />
+  <div class="item-row">
+    <span class="checkbox">
+      <Checkbox v-model="updatedItem.checked" :binary="true" />
     </span>
-    <span class="name">
-      {{ props.name }}
+    <span v-if="!isEdited" class="name">
+      {{ item.name }}
     </span>
-    <span class="amount">
-      {{ props.amount }}
+    <FloatLabel v-if="isEdited" class="name">
+      <InputText v-model="updatedItem.name" required id="{{ id }}-name" />
+      <label for="{{ id }}-name">Item</label>
+    </FloatLabel>
+    <span v-if="!isEdited" class="amount">
+      {{ item.amount }}
     </span>
-    <Button>
-      <i>
-        <ToolingIcon />
-      </i>
-    </Button>
-    <Button v-on:click="$emit('removeItem')">
-      X
-    </Button>
+    <FloatLabel v-if="isEdited" class="amount">
+      <InputText v-model="updatedItem.amount" required id="{{ id }}-amount" />
+      <label for="{{ id }}-amount">Amount</label>
+    </FloatLabel>
+    <ToggleButton type="button" v-model="isEdited" onLabel="Done" offLabel="Edit" onIcon="pi pi-check"
+      offIcon="pi pi-pencil" />
+    <Button type="submit" icon="pi pi-times" v-on:click="$emit('removeItem', updatedItem)" />
   </div>
 </template>
 
 <style scoped>
-div {
+.item-row {
   display: flex;
-  flex-direction: row;
-  gap: 1em;
-  flex: auto;
+  gap: 0.25em;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-span {
-  color: var(--color-text);
+.checkbox {
+  display: flex;
+  flex: 0 0 2em;
+}
+
+.name {
+  flex: 1 1 5em;
+}
+
+.amount {
+  flex: 1 1 3em;
+}
+
+.p-button,
+.p-togglebutton {
+  flex: 0 0 4em;
+}
+
+.p-float-label>label {
+  top: 40%;
+}
+
+.p-inputtext {
+  width: 100%;
+}
+
+.p-button {
+  height: 3em;
+  justify-content: center;
+  white-space: nowrap;
 }
 </style>

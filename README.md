@@ -32,6 +32,11 @@ npm run dev
 npm run build
 ```
 
+### Preview build for PWA functionality
+```sh
+npm run preview
+```
+
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
