@@ -2,8 +2,11 @@ import { type Item, type List } from '@/settings/types'
 import { ref, watch } from 'vue'
 
 const getDefaultList = () => {
-  const parsedList = JSON.parse(localStorage.getItem('list') ?? '{"name": "Unnamed List"}')
-  parsedList.dueDate = new Date(parsedList.dueDate ?? new Date)
+  const parsedList = JSON.parse(localStorage.getItem('list') ?? '{"name": "Unnamed List"}') as List
+  if (parsedList.dueDate !== undefined) {
+    parsedList.dueDate = new Date(parsedList.dueDate)
+  }
+
   return parsedList
 }
 

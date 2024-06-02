@@ -1,23 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { v4 as uuid } from 'uuid'
+import type { Item } from '@/settings/types';
 
 const emit = defineEmits(['addItem', 'error'])
 
-const nextItem = ref<string | undefined>()
-const nextAmount = ref<string | undefined>()
-const nextUnit = ref<string | undefined>()
+const nextItem = ref<Partial<Item>>({} as Partial<Item>)
 
 const addItem = () => {
   emit('addItem', {
+    ...nextItem.value,
     id: uuid(),
-    name: nextItem.value,
     checked: false,
-    amount: nextAmount.value,
-    unit: nextUnit.value,
   })
-  nextItem.value = undefined
-  nextAmount.value = undefined
+  nextItem.value = {} as Partial<Item>
 }
 
 </script>
@@ -26,15 +22,15 @@ const addItem = () => {
   <form v-on:submit.prevent="addItem">
     <div class="form-row">
       <FloatLabel class="item">
-        <InputText id="next-item" v-model="nextItem" required="true" />
+        <InputText id="next-item" v-model="nextItem.name" required="true" />
         <label for="next-item">Item</label>
       </FloatLabel>
       <FloatLabel class="amount">
-        <InputNumber id="next-amount" v-model="nextAmount" />
+        <InputNumber id="next-amount" v-model="nextItem.amount" />
         <label for="next-amount">Amount</label>
       </FloatLabel>
       <FloatLabel class="unit">
-        <InputText id="next-unit" v-model="nextUnit" />
+        <InputText id="next-unit" v-model="nextItem.unit" />
         <label for="next-unit">Unit</label>
       </FloatLabel>
       <Button type="submit" icon="pi pi-plus" iconPos="left">Add item</Button>

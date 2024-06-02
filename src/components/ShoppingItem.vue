@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Item } from '@/settings/types'
-import { ref } from 'vue'
+import { ref, toRef } from 'vue'
 
 defineEmits(['removeItem'])
 
@@ -8,7 +8,7 @@ const props = defineProps<{
   item: Item
 }>()
 
-const updatedItem = ref(props.item)
+const updatedItem = toRef(() => props.item)
 
 const isEdited = ref(false)
 </script>
@@ -29,14 +29,14 @@ const isEdited = ref(false)
       {{ item.amount }}
     </span>
     <FloatLabel v-if="isEdited" class="amount">
-      <InputText v-model="updatedItem.amount" required id="{{ id }}-amount" />
+      <InputNumber v-model="updatedItem.amount" id="{{ id }}-amount" />
       <label for="{{ id }}-amount">Amount</label>
     </FloatLabel>
     <span v-if="!isEdited" class="unit">
       {{ item.unit }}
     </span>
     <FloatLabel v-if="isEdited" class="unit">
-      <InputText v-model="updatedItem.unit" required id="{{ id }}-unit" />
+      <InputText v-model="updatedItem.unit" id="{{ id }}-unit" />
       <label for="{{ id }}-unit">Unit</label>
     </FloatLabel>
     <ToggleButton type="button" v-model="isEdited" onLabel="Done" offLabel="Edit" onIcon="pi pi-check"

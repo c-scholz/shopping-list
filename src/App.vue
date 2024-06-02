@@ -7,7 +7,7 @@ const { list } = useLists()
 
 <template>
   <header>
-    <img alt="Shopping List logo" class="logo" src="@/assets/android-chrome-512x512.png" width="125" height="125" />
+    <img alt="Shopping List logo" class="logo" src="./assets/logo.png" width="125" height="125" />
 
     <div class="wrapper">
       <MenuBar msg="You did it!" :list="list" />

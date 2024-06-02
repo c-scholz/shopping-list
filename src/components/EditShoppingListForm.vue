@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { List } from '@/settings/types'
-import { ref } from 'vue'
+import { ref, toRef } from 'vue'
 
 const props = defineProps<{
   list: List
 }>()
 
-const updatedList = ref(props.list)
+const updatedList = toRef(() => props.list)
 
 const isEdited = ref(false)
 </script>
