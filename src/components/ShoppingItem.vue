@@ -22,21 +22,18 @@ const isEdited = ref(false)
       {{ item.name }}
     </span>
     <FloatLabel v-if="isEdited" class="name">
-      <InputText v-model="updatedItem.name" required id="{{ id }}-name" />
+      <InputText v-model="updatedItem.name" required inputId="{{ id }}-name" />
       <label for="{{ id }}-name">Item</label>
     </FloatLabel>
     <span v-if="!isEdited" class="amount">
-      {{ item.amount }}
+      {{ item.amount }} {{ item.unit }}
     </span>
     <FloatLabel v-if="isEdited" class="amount">
-      <InputNumber v-model="updatedItem.amount" id="{{ id }}-amount" />
+      <InputNumber v-model="updatedItem.amount" inputId="{{ id }}-amount" :min="0" showButtons />
       <label for="{{ id }}-amount">Amount</label>
     </FloatLabel>
-    <span v-if="!isEdited" class="unit">
-      {{ item.unit }}
-    </span>
     <FloatLabel v-if="isEdited" class="unit">
-      <InputText v-model="updatedItem.unit" id="{{ id }}-unit" />
+      <InputText v-model="updatedItem.unit" inputId="{{ id }}-unit" />
       <label for="{{ id }}-unit">Unit</label>
     </FloatLabel>
     <ToggleButton type="button" v-model="isEdited" onLabel="Done" offLabel="Edit" onIcon="pi pi-check"

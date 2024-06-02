@@ -22,15 +22,15 @@ const addItem = () => {
   <form v-on:submit.prevent="addItem">
     <div class="form-row">
       <FloatLabel class="item">
-        <InputText id="next-item" v-model="nextItem.name" required="true" />
+        <InputText inputId="next-item" v-model="nextItem.name" required="true" />
         <label for="next-item">Item</label>
       </FloatLabel>
       <FloatLabel class="amount">
-        <InputNumber id="next-amount" v-model="nextItem.amount" />
+        <InputNumber inputId="next-amount" v-model="nextItem.amount" :min="0" showButtons />
         <label for="next-amount">Amount</label>
       </FloatLabel>
       <FloatLabel class="unit">
-        <InputText id="next-unit" v-model="nextItem.unit" />
+        <InputText inputId="next-unit" v-model="nextItem.unit" />
         <label for="next-unit">Unit</label>
       </FloatLabel>
       <Button type="submit" icon="pi pi-plus" iconPos="left">Add item</Button>

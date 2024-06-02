@@ -14,11 +14,11 @@ const isEdited = ref(false)
 <template>
   <div class="form-row">
     <FloatLabel v-if="isEdited">
-      <InputText v-model="updatedList.name" id="list-name" required />
+      <InputText v-model="updatedList.name" inputId="list-name" required />
       <label for="list-name">Name</label>
     </FloatLabel>
     <FloatLabel v-if="isEdited">
-      <Calendar v-model="updatedList.dueDate" id="list-duedate" date-format="dd.mm.y" showIcon />
+      <Calendar v-model="updatedList.dueDate" inputId="list-duedate" date-format="dd.mm.y" showIcon />
       <label for="list-duedate">Due date</label>
     </FloatLabel>
     <ToggleButton type="button" v-model="isEdited" onLabel="Done" offLabel="Edit List" onIcon="pi pi-check"
