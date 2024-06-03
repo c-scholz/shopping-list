@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { List } from '@/settings/types'
 import { ref, toRef } from 'vue'
+import type { List } from '@/settings/types'
 
 const props = defineProps<{
   list: List

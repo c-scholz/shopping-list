@@ -1,46 +1,22 @@
 <script setup lang="ts">
-import type { List } from '@/settings/types';
-
-defineProps<{
-  msg: string,
-  list: List
-}>()
 </script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ list.name }}</h1>
-    <h3 v-if="list.dueDate">
-      due: {{ new Date(list.dueDate).toLocaleDateString('en-EN', {
-        day: 'numeric', weekday: 'long', month: 'long', year:
-          'numeric'
-      }) }}
-    </h3>
-  </div>
+  <Toolbar>
+    <template #start>
+      <RouterLink to="/">
+        <img alt="Shopping List logo" class="logo" src="@/assets/logo.png" />
+      </RouterLink>
+    </template>
+    <template #center>
+      Shopping List
+    </template>
+  </Toolbar>
 </template>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+img {
+  height: 50px;
+  width: auto;
 }
 </style>

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { v4 as uuid } from 'uuid'
-import type { Item } from '@/settings/types';
+import { ref } from 'vue'
+import type { Item } from '@/settings/types'
 
-const emit = defineEmits(['addItem', 'error'])
+const emit = defineEmits(['addItem'])
 
 const nextItem = ref<Partial<Item>>({} as Partial<Item>)
 
@@ -23,7 +23,7 @@ const addItem = () => {
     <div class="form-row">
       <FloatLabel class="item">
         <InputText inputId="next-item" v-model="nextItem.name" required="true" />
-        <label for="next-item">Item</label>
+        <label for="next-item">Item *</label>
       </FloatLabel>
       <FloatLabel class="amount">
         <InputNumber inputId="next-amount" v-model="nextItem.amount" :min="0" showButtons />

@@ -1,38 +1,58 @@
+import { computed, ref, watch } from 'vue'
 import { type Item, type List } from '@/settings/types'
-import { ref, watch } from 'vue'
 
-const getDefaultList = () => {
-  const parsedList = JSON.parse(localStorage.getItem('list') ?? '{"name": "Unnamed List"}') as List
-  if (parsedList.dueDate !== undefined) {
-    parsedList.dueDate = new Date(parsedList.dueDate)
-  }
+const getParsedLists = () => {
+  const parsedLists = JSON.parse(localStorage.getItem('lists') ?? '[]') as List[]
 
-  return parsedList
+  parsedLists.forEach(parsedList => {
+    if (parsedList.dueDate !== undefined) {
+      parsedList.dueDate = new Date(parsedList.dueDate)
+    }
+  })
+
+  return parsedLists
 }
 
-const list = ref<List>(getDefaultList())
+const lists = ref<List[]>(getParsedLists())
 
-const items = ref<Item[]>(JSON.parse(localStorage.getItem('items') ?? '[]'))
+const sortedLists = computed(() => lists.value.sort((listA, listB) => {
+  if (listA.dueDate === undefined) {
+    return 1
+  }
+  if (listB.dueDate === undefined) {
+    return -1
+  }
+  return listA.dueDate.getTime() - listB.dueDate.getTime()
+}))
+
+const getListIndex = (listId: string) => lists.value.findIndex(list => list.id === listId)
+
 
 export const useLists = () => {
-  const addItem = (newItem: Item) => {
-    items.value.push(newItem)
+  const addList = (newList: List) => {
+    lists.value.push(newList)
   }
 
-  const removeItem = (removeItemIdx: number) => {
-    items.value.splice(removeItemIdx, 1)
+  const removeList = (listId: string) => {
+    const listIdx = getListIndex(listId)
+    lists.value.splice(listIdx, 1)
   }
 
-  return { items, list, addItem, removeItem }
+  const addItem = (newItem: Item, listId: string) => {
+    const listIdx = getListIndex(listId)
+    lists.value[listIdx]?.items.push(newItem)
+  }
+
+  const removeItem = (itemId: string, listId: string) => {
+    const listIdx = getListIndex(listId)
+    const itemIdx = lists.value[listIdx].items.findIndex(item => item.id === itemId)
+    lists.value[listIdx]?.items.splice(itemIdx, 1)
+  }
+
+  return { lists, sortedLists, addList, removeList, addItem, removeItem }
 }
 
 
-watch(list, (newList) => {
-  console.log('updated list')
-  localStorage.setItem('list', JSON.stringify(newList))
-}, { deep: true })
-
-watch(items, (newItems) => {
-  console.log('updated items')
-  localStorage.setItem('items', JSON.stringify(newItems))
+watch(lists, (newList) => {
+  localStorage.setItem('lists', JSON.stringify(newList))
 }, { deep: true })

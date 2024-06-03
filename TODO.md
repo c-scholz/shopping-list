@@ -3,6 +3,11 @@
   - service worker registration ✔
   - icons ✔
 
+- ShoppingLists view
+  - add list form ✔
+  - link lists ✔
+  - sort lists ✔
+
 - ShoppingListDetails view
   - include AddItem form ✔
   - include ShoppingItem components ✔
@@ -20,14 +25,11 @@
 - Routing ?
   - add vue router ✔
 
-- implement data localstorage
-  - add pinia ✔
-  - add pinia localstorage plugin ✔
+- implement data localstorage 
+  - implement list of items ✔
+  - implement list of shopping lists ✔
+  - compute sorted list ✔
 
 - implement material ui
   - add vueprime  ✔
   - set material design theme  ✔
-
-- implement push handler in serviceworker
-  - inject custom sw
-  - implement scheduled push notification on date

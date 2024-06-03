@@ -1,4 +1,18 @@
-@import './base.css';
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @import 'primevue/resources/themes/md-dark-indigo/theme.css';
 @import 'primeicons/primeicons.css';
 
@@ -6,25 +20,9 @@
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr;
-  padding: 0 2rem;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: rgb(159, 168, 218);
-  transition: 0.4s;
-  padding: 3px;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: rgba(159, 168, 218, 0.92);
-  }
+  justify-items: center;
+  font-size: 16px;
 }
 
 .p-togglebutton .p-button {

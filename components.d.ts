@@ -8,8 +8,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AddItemForm: typeof import('./src/components/AddItemForm.vue')['default']
+    AddListForm: typeof import('./src/components/AddListForm.vue')['default']
     Button: typeof import('primevue/button')['default']
     Calendar: typeof import('primevue/calendar')['default']
+    Card: typeof import('primevue/card')['default']
     Checkbox: typeof import('primevue/checkbox')['default']
     EditShoppingListForm: typeof import('./src/components/EditShoppingListForm.vue')['default']
     FloatLabel: typeof import('primevue/floatlabel')['default']
@@ -20,5 +22,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     ShoppingItem: typeof import('./src/components/ShoppingItem.vue')['default']
     ToggleButton: typeof import('primevue/togglebutton')['default']
+    Toolbar: typeof import('primevue/toolbar')['default']
   }
 }

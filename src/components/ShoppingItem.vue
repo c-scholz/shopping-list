@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { type Item } from '@/settings/types'
 import { ref, toRef } from 'vue'
+import { type Item } from '@/settings/types'
 
 defineEmits(['removeItem'])
 
@@ -23,7 +23,7 @@ const isEdited = ref(false)
     </span>
     <FloatLabel v-if="isEdited" class="name">
       <InputText v-model="updatedItem.name" required inputId="{{ id }}-name" />
-      <label for="{{ id }}-name">Item</label>
+      <label for="{{ id }}-name">Item*</label>
     </FloatLabel>
     <span v-if="!isEdited" class="amount">
       {{ item.amount }} {{ item.unit }}
