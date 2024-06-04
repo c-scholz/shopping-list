@@ -42,10 +42,6 @@ const addList = () => {
   flex-wrap: wrap;
 }
 
-.list {
-  flex-grow: 1;
-}
-
 .name,
 .date {
   flex-grow: 1;

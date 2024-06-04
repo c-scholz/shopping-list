@@ -18,18 +18,25 @@
   - name, amount ✔
   - update to use vueprime components ✔
 
+- AddListForm component
+  - name, amount ✔
+  - update to use vueprime components ✔
+
 - ShoppingItem component
   - delete ✔
   - update to use vueprime components ✔
 
-- Routing ?
+- Routing
   - add vue router ✔
 
-- implement data localstorage 
+- Data localstorage 
   - implement list of items ✔
   - implement list of shopping lists ✔
   - compute sorted list ✔
 
-- implement material ui
+- Material design
   - add vueprime  ✔
   - set material design theme  ✔
+
+- Push messages
+  - modify service worker to send push notifications on due date

@@ -42,7 +42,7 @@ const { sortedLists, addList, removeList } = useLists()
 .lists {
   margin-top: 2rem;
   display: grid;
-  gap: 0.5rem;
+  gap: 1rem;
   grid-template-columns: repeat(1, 1fr);
 
   @media screen and (min-width: 600px) {

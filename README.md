@@ -2,6 +2,8 @@
 
 PWA shopping list app.
 
+Add Lists, set their due dates and add items to each list.
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
