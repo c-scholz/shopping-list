@@ -44,22 +44,16 @@ const addList = () => {
 
 .list {
   flex-grow: 1;
-  flex-basis: 20em;
 }
 
-.amount,
-.unit {
+.name,
+.date {
   flex-grow: 1;
-  flex-basis: 1em;
-}
-
-.p-float-label>label {
-  top: 1.3em;
 }
 
 .p-inputtext,
-.p-inputnumber {
-  min-width: 100%;
+.p-calendar {
+  width: 100%;
 }
 
 .p-button {

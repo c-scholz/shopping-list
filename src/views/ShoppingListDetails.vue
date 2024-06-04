@@ -3,6 +3,7 @@ import { toRef } from 'vue'
 import AddItemForm from '@/components/AddItemForm.vue'
 import EditShoppingListForm from '@/components/EditShoppingListForm.vue'
 import ShoppingItem from '@/components/ShoppingItem.vue'
+import { renderDate } from '@/settings/helpers'
 import { useLists } from '@/stores/listStore'
 
 const { id } = defineProps<{
@@ -16,8 +17,18 @@ const list = toRef(lists.value[lists.value.findIndex(list => list.id === id)])
 
 <template>
   <div v-if="list">
+    <Card>
+      <template #title>
+        <h2>{{ list.name }}</h2>
+      </template>
+      <template #subtitle v-if="list.dueDate">
+        <h3>Due: {{ renderDate(list.dueDate) }}</h3>
+      </template>
+      <template #footer>
+        <EditShoppingListForm :list="list" />
+      </template>
+    </Card>
     <div class="list-container">
-      <EditShoppingListForm :list="list" />
       <AddItemForm v-on:add-item="(newItem) => addItem(newItem, list.id)" />
       <ul>
         <li v-for="item in list.items" v-bind:key="item.id">

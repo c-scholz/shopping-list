@@ -29,16 +29,12 @@ const isEdited = ref(false)
 <style scoped>
 .form-row {
   display: flex;
-  gap: 2em;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .p-float-label {
   flex: 1 1 auto;
-}
-
-.p-float-label>label {
-  top: 40%;
 }
 
 .p-inputtext {

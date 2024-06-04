@@ -41,23 +41,19 @@ const addItem = () => {
 <style scoped lang="scss">
 .form-row {
   display: flex;
-  gap: 1em;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .item {
   flex-grow: 1;
-  flex-basis: 20em;
+  flex-basis: 20rem;
 }
 
 .amount,
 .unit {
   flex-grow: 1;
-  flex-basis: 1em;
-}
-
-.p-float-label>label {
-  top: 1.3em;
+  flex-basis: 1rem;
 }
 
 .p-inputtext,
@@ -68,7 +64,7 @@ const addItem = () => {
 .p-button {
   flex-grow: 1;
   flex-shrink: 0;
-  flex-basis: 4.5em;
+  flex-basis: 4.5rem;
   white-space: nowrap;
 }
 </style>

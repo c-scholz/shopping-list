@@ -9,12 +9,20 @@
       </RouterLink>
     </template>
     <template #center>
-      Shopping List
+      <h1>Shopping List</h1>
     </template>
   </Toolbar>
 </template>
 
 <style scoped>
+.p-toolbar {
+  padding: 1rem 2rem;
+}
+
+h1 {
+  margin: 0;
+}
+
 img {
   height: 50px;
   width: auto;
